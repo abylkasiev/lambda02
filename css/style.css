@@ -1,0 +1,649 @@
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+.hamburger {
+  padding: 15px 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+}
+.hamburger:hover {
+  opacity: 0.7;
+}
+.hamburger.is-active:hover {
+  opacity: 0.7;
+}
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+  background-color: #000;
+}
+
+.hamburger-box {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+}
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+  width: 40px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+.hamburger-inner::before, .hamburger-inner::after {
+  content: "";
+  display: block;
+}
+.hamburger-inner::before {
+  top: -10px;
+}
+.hamburger-inner::after {
+  bottom: -10px;
+}
+
+/*
+ * Collapse
+ */
+.hamburger--collapse .hamburger-inner {
+  top: auto;
+  bottom: 0;
+  transition-duration: 0.13s;
+  transition-delay: 0.13s;
+  transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.hamburger--collapse .hamburger-inner::after {
+  top: -20px;
+  transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), opacity 0.1s linear;
+}
+.hamburger--collapse .hamburger-inner::before {
+  transition: top 0.12s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1), transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.hamburger--collapse.is-active .hamburger-inner {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+  transition-delay: 0.22s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.hamburger--collapse.is-active .hamburger-inner::after {
+  top: 0;
+  opacity: 0;
+  transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333), opacity 0.1s 0.22s linear;
+}
+.hamburger--collapse.is-active .hamburger-inner::before {
+  top: 0;
+  transform: rotate(-90deg);
+  transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@font-face {
+  font-family: "lato";
+  src: url("../fonts/lato-regular.woff") format("woff"), url("../fonts/lato-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "opensans";
+  src: url("../fonts/opensans-regular.woff") format("woff"), url("../fonts/opensans-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "opensans";
+  src: url("../fonts/opensans-bold.woff") format("woff"), url("../fonts/opensans-bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "yesevaone";
+  src: url("../fonts/yesevaone-regular.woff") format("woff"), url("../fonts/yesevaone-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "gentium";
+  src: url("../fonts/gentiumbookbasic-bold.woff") format("woff"), url("../fonts/gentiumbookbasic-bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.header {
+  background: url(../img/header-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  position: relative;
+  padding-bottom: 10.125rem;
+  box-shadow: 0 60px 150px #000 inset;
+}
+
+.logo__img {
+  padding-top: 0.5rem;
+}
+
+.top {
+  display: flex;
+}
+
+.nav {
+  margin-left: auto;
+  display: flex;
+}
+@media screen and (max-width: 768px) {
+  .nav {
+    position: absolute;
+    left: 0;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav.is-active {
+    top: 0;
+    background-color: #fff;
+    z-index: 3;
+  }
+}
+.nav__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media screen and (max-width: 768px) {
+  .nav__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav__list :hover {
+    color: #454545;
+    text-decoration: underline;
+  }
+}
+.nav__item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 3.1875rem;
+}
+@media screen and (max-width: 1258px) {
+  .nav__item {
+    margin-left: 2rem;
+  }
+}
+@media screen and (max-width: 1140px) {
+  .nav__item {
+    margin-left: 1rem;
+  }
+}
+@media screen and (max-width: 928px) {
+  .nav__item {
+    margin-left: 0;
+  }
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.3125rem;
+  padding: 0 1rem;
+  font-family: "gentium", sans-serif;
+  font-style: normal;
+}
+.nav__link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transition: 0.5s;
+  transform: scaleX(0);
+}
+.nav__link:hover::before {
+  transform: scaleX(1);
+}
+@media screen and (max-width: 1140px) {
+  .nav__link {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 928px) {
+  .nav__link {
+    padding: 0 0.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .nav__link {
+    top: -1000px;
+    color: #000;
+    padding-top: 1rem;
+  }
+}
+
+.social {
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .social {
+    margin-top: 1rem;
+  }
+}
+
+.social-icons {
+  color: #dab33e;
+  margin-left: 1.25rem;
+}
+.social-icons:hover {
+  color: #3b83e0;
+}
+@media screen and (max-width: 768px) {
+  .social-icons {
+    margin: 0 0.5rem;
+  }
+}
+
+.header-info__slogan {
+  margin-top: 139px;
+  font-size: 90px;
+  color: #ffffff;
+  font-weight: 400;
+  padding-left: 8.75rem;
+  padding-right: 8.75rem;
+  font-family: "yesevaone";
+  font-style: normal;
+  text-align: center;
+  filter: drop-shadow(0.469px 0.883px 1px rgba(1, 1, 1, 0.64));
+}
+
+.header-info__decoration {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.header-btn {
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+.header-btn__link {
+  background-color: #00000096;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 1.4375rem 3.25rem 1.3125rem 3.25rem;
+}
+.header-btn__link:hover {
+  background-color: #aa838396;
+}
+
+.header-btn__colored {
+  background-color: #ffffff34;
+  margin-left: 2rem;
+}
+
+.hamburger {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: inline-block;
+    z-index: 5;
+    margin-left: auto;
+  }
+}
+
+.about-section {
+  background: url(../img/about-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  padding: 4.625rem 0 2rem 0;
+}
+
+.about {
+  display: flex;
+}
+
+.about__info {
+  margin: 0 2.25rem;
+  width: 40%;
+  padding: 2.125rem 1rem 0 1rem;
+}
+
+.about__info-slogan {
+  font-size: 36px;
+  line-height: 24px;
+  color: #cc9900;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "yesevaone";
+  text-align: center;
+  margin: 0;
+}
+
+.about__info-text {
+  font-size: 16px;
+  line-height: 24px;
+  color: #4c4c4c;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "lato";
+  text-align: center;
+}
+
+.about__info-decoration {
+  text-align: center;
+  padding-top: 1.5rem;
+}
+
+.about__info-text {
+  padding-top: 2rem;
+  margin: 0;
+}
+
+.about__info-image {
+  padding-top: 3.25rem;
+  position: relative;
+}
+
+.about__info-photo {
+  position: absolute;
+  right: 4.375rem;
+  max-width: 100%;
+}
+
+.about__dish {
+  width: 60%;
+}
+
+.about__dish-image {
+  max-width: 100%;
+}
+
+.ingredients-section {
+  background: url(../img/ingredients-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  padding-top: 7.5rem;
+  padding-bottom: 7.8rem;
+}
+
+.ingredients {
+  max-width: 570px;
+  background-color: #0000009c;
+  margin-left: auto;
+  margin-right: 2.5rem;
+}
+
+.ingredients__slogan {
+  font-size: 2.25rem;
+  color: #ffffff;
+  font-weight: 400;
+  font-family: "yesevaone";
+  text-align: center;
+  padding-top: 5.1875rem;
+}
+
+.ingredients__devider {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.ingredients__text {
+  text-align: center;
+  padding: 1.5rem 4.9125rem 2.2rem 4.9125rem;
+  margin: 0;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 24px;
+  font-family: "lato";
+  font-weight: normal;
+}
+
+.ingredsients__food {
+  display: flex;
+  padding-bottom: 3.75rem;
+  position: relative;
+}
+
+.food-block-1 {
+  background-color: #ffffff25;
+  width: 287px;
+  height: 191px;
+  border-radius: 5px;
+  margin-left: 2.8125rem;
+}
+
+.food-1 {
+  padding: 2.25rem 8.5625rem 3.5rem 3.125rem;
+}
+
+.food-block-2 {
+  background-color: #ffffff25;
+  width: 244px;
+  height: 218px;
+  border-radius: 5px;
+  position: absolute;
+  left: 188px;
+  bottom: 90px;
+}
+
+.food-2 {
+  padding: 5.875rem 6.0625rem 1.5rem 2.9375rem;
+}
+
+.food-block-3 {
+  background-color: #ffffff25;
+  width: 211px;
+  height: 144px;
+  border-radius: 5px;
+  position: absolute;
+  right: 32px;
+  bottom: 90px;
+}
+
+.food-3 {
+  padding: 1.3125rem 3.9375rem 1.4375rem 3rem;
+}
+
+.menu-section {
+  background: url(../img/menu-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  padding-top: 4.375rem;
+}
+
+.general-menu_block {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-left: 6.75rem;
+  padding-right: 6.1875rem;
+}
+
+.menu__slogan {
+  font-size: 36px;
+  line-height: 24px;
+  color: #cc9900;
+  font-weight: 400;
+  font-family: "yesevaone";
+  text-align: center;
+  margin: 0;
+}
+
+.menu__decoration {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1.875rem;
+}
+
+.menu {
+  margin-top: 2.3125rem;
+  padding: 0.7rem;
+  position: relative;
+}
+
+.menu-block_2 {
+  margin-right: 4rem;
+}
+
+.menu-block_1 {
+  margin-left: 4rem;
+}
+
+.position-block {
+  position: relative;
+  top: -138px;
+}
+
+.mt-block {
+  margin-top: 2.0625rem;
+}
+
+.menu__title-slogan {
+  position: relative;
+  font-size: 21px;
+  line-height: 24px;
+  color: #c89f2d;
+  font-weight: 400;
+  font-family: "yesevaone";
+  text-align: left;
+  margin: 0;
+  padding-bottom: 1.1875rem;
+}
+
+.menu__title-price {
+  position: absolute;
+  right: 0;
+}
+
+.menu__title-line {
+  width: 100%;
+  height: 1px;
+  background-color: #dfcf9a;
+}
+
+.menu__title-recipe {
+  color: #4c4c4c;
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: "lato";
+  margin: 0;
+  padding-top: 0.9375rem;
+}
+
+.special-menu {
+  border: 1px solid #dfcf9a;
+}
+
+.menu__special {
+  font-size: 0.875rem;
+  color: #fff;
+  background-color: #d7bd74;
+  position: absolute;
+  right: -1px;
+  top: -27px;
+  padding: 0.375rem 0.8125rem 0.25rem 0.8125rem;
+}
+
+.section-reviews {
+  background: url(../img/reviews-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  padding: 6.25rem 0;
+}
+
+.reviews {
+  background-color: #000000d3;
+  max-width: 770px;
+  margin: auto;
+  padding: 5.125rem 4rem 6.6875rem 4rem;
+}
+
+.reviews__slogan {
+  font-size: 36px;
+  color: #ffffff;
+  font-weight: 400;
+  font-family: "yesevaone";
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.reviews__devider {
+  text-align: center;
+}
+
+.reviews__text {
+  position: relative;
+  font-size: 25px;
+  line-height: 45px;
+  color: #dde0df;
+  font-weight: 700;
+  font-family: "Gentium";
+  text-align: center;
+}
+
+.reviews__subtitle {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: normal;
+  font-family: "lato";
+  text-align: center;
+}
+
+.quotes {
+  position: absolute;
+  top: -5px;
+  left: -40px;
+}
+
+/*# sourceMappingURL=style.css.map */
